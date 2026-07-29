@@ -27,10 +27,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
+      # Fixes errors related to missing lock files from drag-and-drop
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build Project with Nitro Target
         run: npm run build
@@ -43,7 +43,12 @@ jobs:
       - name: Upload Build Output Directory
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.output/public' # TanStack Start / Nitro static folder path
+          path: '.output/public'
+
+      - name: Deploy to GitHub Pages Live Server
+        id: deployment
+        uses: actions/deploy-pages@v4
+
 
       - name: Deploy to GitHub Pages Live Server
         id: deployment
