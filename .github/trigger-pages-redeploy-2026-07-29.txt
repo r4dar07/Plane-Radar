@@ -1,0 +1,6 @@
+Trigger GitHub Pages redeploy
+
+This file was created to trigger a workflow dispatch by making a no-op commit.
+
+Timestamp: 2026-07-29T00:00:00Z
+Author: r4dar07 (trigger by assistant)
