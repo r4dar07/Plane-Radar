@@ -50,6 +50,3 @@ jobs:
         uses: actions/deploy-pages@v4
 
 
-      - name: Deploy to GitHub Pages Live Server
-        id: deployment
-        uses: actions/deploy-pages@v4
