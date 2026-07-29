@@ -11,9 +11,14 @@ export default defineConfig(({ command, ssrBuild }) => {
   // to the ssrBuild flag when present.
   const isNitroBuild = Boolean(process.env.NITRO_PRESET || process.env.NITRO_BUILD || ssrBuild);
 
+  // Use a different base during the Nitro (SSR/prerender) build so the prerender
+  // crawler requests root paths (/) instead of the repository path. For client
+  // assets (when building the client bundle), keep the GitHub Pages base.
+  const clientBase = "/Plane-Radar/";
+  const base = isNitroBuild ? "/" : clientBase;
+
   return {
-    // ⚠️ CHANGE THIS: Replace with your exact GitHub repository path name
-    base: "/Plane-Radar/",
+    base,
     resolve: {
       alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
       dedupe: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-query"],
